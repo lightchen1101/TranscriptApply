@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="js/libs/jquery-3.7.1.min.js"></script>
+    <script src="js/libs/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.messagestore.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.language.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.parser.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.emitter.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />-->
+    <title data-i18n="head-title">成績單及學位證明書線上申請系統</title>
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <img src="img/ntu-logo.png" class="header-left-logo" alt="logo">
+        <div class="header-left-word">
+            <div class="header-left-word-ntu" data-i18n="header-ntu">國立臺灣大學</div>
+            <div class="header-left-word-ntu-trans" data-i18n="header-title">成績單及學位證明書線上申請系統</div>
+        </div>
+    </div>
+    <div class="header-right">
+        <a class="header-localeEng">English</a>
+        <a class="header-localeZh">Zh-TW</a >
+        <a class="header-logout" data-i18n="header-logout">登出</a>
+    </div>
+</header>
+
+<main>
+    <div class="main-container">
+        <img src="img/ntu-logo.png" class="main-logo" alt="logo">
+        <div class="main-ntu"><p>國立臺灣大學</p>
+            <p>成績單及學位證明書線上申請系統</p></div>
+        <div class="main-ntu-eng"><p>National Taiwan University</p>
+            <p>
+                Online Transcript Order System</p></div>
+    </div>
+    <div class="main-btn">
+        <a class="main-apply-btn" data-i18n="main-start">開始申請</a>
+        <div class="popout-overlay"></div>
+        <div class="popout-apply-notice">
+            <div class="popout-apply-notice-title" data-i18n="main-notice-title">申請前小叮嚀</div>
+            <div class="popout-apply-notice-content" data-i18n="main-notice-content">
+                在校生(含應屆畢業生)申請成績單時，請先查詢成績是否到齊再行申辦，一旦受理，事後不得以「成績未到齊」為由，要求重新寄發。
+            </div>
+            <div class="popout-apply-notice-btn">
+                <a class="popout-apply-notice-btn-cancel" data-i18n="main-notice-cancel">取消</a>
+                <a class="popout-apply-notice-btn-cont" data-i18n="main-notice-cont">同意並繼續</a>
+            </div>
+        </div>
+        <a class="main-inquiry-btn" data-i18n="main-progress-btn">查詢進度</a>
+        <a class="main-grade-btn" data-i18n="main-grade-btn" href="https://if190.aca.ntu.edu.tw/graderanking/index">查詢成績與名次</a>
+    </div>
+</main>
+<footer>
+    <div class="footer-title"><p data-i18n="header-ntu">國立臺灣大學</p>
+        <p data-i18n="head-title">成績單及學位證明書線上申請系統</p></div>
+    <div class="footer-contact-container">
+        <div class="footer-contact-cards">
+            <div class="footer-contact">
+                <a class="footer-contact-group" href="https://www.aca.ntu.edu.tw/w/aca/UAAD"
+                   data-i18n="footer-register-group">註冊組</a>
+                <div class="footer-contact-info">
+                    <p>(02)33662388 轉 206、211~225</p>
+                    <p>FAX：(02)23638200</p>
+                    <a href="mailto:chiajin@ntu.edu.tw">chiajin@ntu.edu.tw</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <a class="footer-contact-group" href="https://www.aca.ntu.edu.tw/w/aca/GAAD"
+                   data-i18n="footer-teach-group">教研組</a>
+                <div class="footer-contact-info">
+                    <p>(02)33662388 轉 403~412</p>
+                    <p>FAX：(02)23634383</p>
+                    <a href="mailto:graduate@ntu.edu.tw">graduate@ntu.edu.tw</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <a class="footer-contact-group" href="https://www.aca.ntu.edu.tw/w/aca/BOAACM"
+                   data-i18n="footer-medical-branch">醫學院教務分處</a>
+                <div class="footer-contact-info">
+                    <p>(02)23123456 轉 62192、88024、88025、88027</p>
+                    <p>FAX：(02)23913963</p>
+                    <a href="mailto:macd@ntu.edu.tw">macd@ntu.edu.tw</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-help">
+            <span data-i18n="footer-help">若有任何疑問，請於台北時間 08:00AM ~ 05:00PM 來電洽詢或 E-Mail 來信。<br></span>
+            <div class="footer-info" data-i18n="footer-help-contact">我該向誰尋求協助
+                <div class="footer-info-i">&#9432</div>
+            </div>
+            <div class="popout-overlay"></div>
+            <div class="footer-info-popout">
+                <div class="footer-info-popout-title" data-i18n="footer-popout-title">我該向誰尋求協助？<div class="exit-btn">&#215</div></div>
+                <div class="footer-info-popout-content" data-i18n="footer-popout-content">
+                    校總區各系學士班(大學部)同學，請至【註冊組】<br>
+                    校總區各系(所)碩、博士班研究生，請至【研教組】<br>
+                    學士班護理一、公衛一，醫學、牙醫、藥學、醫技、物治、職治等六系一至二年級學生請洽【註冊組】；<br>
+                    其餘醫學院、公衛學院各系所學生， 請至【醫學院教務分處】<br>
+                    進修學士班同學，請至【註冊組】
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">Copyright © 2023 國立臺灣大學教務處 Office of Academic Affairs, National Taiwan
+        University
+    </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>

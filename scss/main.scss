@@ -1,0 +1,213 @@
+@import "apply";
+@import "inquiry";
+@import "common";
+@import "variables";
+/*可以 import字體檔 美觀一些*/
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  background: #F6F6F6;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    justify-content: space-between;
+    background-color: white;
+    align-items: center;
+    width: calc(100% - 300px);
+    padding: 10px 150px;
+    z-index: 5;
+    @include phone {
+      width: calc(100% - 30px);
+      flex-direction: row;
+      padding: 10px 15px;
+    }
+    @include tablet {
+      width: calc(100% - 100px);
+      padding: 10px 50px;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      .header-left-logo {
+        width: 48px;
+      }
+
+      .header-left-word {
+        .header-left-word-ntu {
+          font-size: 24px;
+        }
+
+        .header-left-word-ntu-trans {
+          font-size: 12px;
+          color: $dark-red;
+        }
+
+      }
+    }
+
+    .header-right {
+      gap: 24px;
+
+      .header-localeEng {
+        display: block;
+        cursor: pointer;
+      }
+
+      .header-localeZh {
+        display: none;
+        cursor: pointer;
+      }
+
+      .header-logout {
+        display: none;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    //width: calc(100% - padding-left - padding-right);
+    gap: 50px;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    background-color: #FFFFFF;
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+
+      .main-logo {
+        display: flex;
+        width: 96px;
+        padding-bottom: 24px;
+      }
+
+      .main-ntu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 24px;
+        @include phone {
+          font-size: 20px;
+        }
+        margin: 0;
+      }
+
+      .main-ntu-eng {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 16px;
+      }
+    }
+
+    .main-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+
+
+
+      .popout-apply-notice {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 30%;
+        background-color: #FFFFFF;
+        width: 384px;
+        border-radius: 16px;
+        padding: 24px;
+        gap: 32px;
+        z-index: 2;
+        @include phone {
+          width: 80%;
+        }
+
+        .popout-apply-notice-title {
+          font-size: 18px;
+          color: #2D2D2D;
+          padding-bottom: 8px;
+        }
+
+        .popout-apply-notice-content {
+          font-size: 16px;
+          color: #6F6F6F;
+          padding-bottom: 32px;
+        }
+
+        .popout-apply-notice-btn {
+          display: flex;
+          flex-direction: row;
+          justify-content: end;
+          gap: 8px;
+
+          .popout-apply-notice-btn-cancel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 36px;
+            background-color: white;
+            border: 2px solid #AFAFAF;
+            @include btn-round-border;
+          }
+
+          .popout-apply-notice-btn-cont {
+            @extend .popout-apply-notice-btn-cancel;
+            width: 104px;
+            background-color: $dark-red;
+            color: white;
+            border: 2px solid $dark-red;
+          }
+        }
+      }
+
+      .main-apply-btn {
+        @include submit-btn;
+        @include phone {
+          width: 300px;
+        }
+      }
+
+      .main-inquiry-btn {
+        @include submit-btn;
+        background-color: #EEDFE1;
+        color: $dark-red;
+        @include phone {
+          width: 300px;
+        }
+      }
+
+      .main-grade-btn {
+        color: $dark-red;
+        cursor: pointer;
+      }
+    }
+  }
+  .popout-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+
+}

@@ -1,0 +1,166 @@
+@import "common";
+@import "variables";
+$light-red: #EEDFE1;
+
+
+.tab4 {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+
+  .tab4-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    border-radius: 32px;
+    border: 2px solid $border-gray;
+    gap: 24px;
+
+    .tab4-container-title {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      font-size: 18px;
+
+    }
+
+    .tab4-container-fee {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 16px;
+
+      p {
+        width: 50px;
+        text-align: center;
+        color: $info-yellow;
+      }
+    }
+
+    .tab4-container-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .expand {
+        border: none;
+        background-color: white;
+      }
+      .expand-active{
+        transform: rotate(180deg);
+      }
+      .hidden{
+        display: flex !important;
+      }
+      .detail1 {
+        display: none;
+        padding: 8px 8px 8px 30px;
+        flex-direction: column;
+        gap: 8px;
+        align-self: stretch;
+        color: $contact-gray;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+
+      .detail2 {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .detail3 {
+        display: none;
+        flex-direction: column;
+      }
+
+      .e-detail1 {
+        display: none;
+        padding: 8px 8px 8px 30px;
+        color: $contact-gray;
+        flex-direction: column;
+        gap: 8px;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+      .e-detail2 {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .tab4-container-content-title {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+
+        span {
+          color: $info-yellow;
+        }
+      }
+
+      .tab4-letter-container {
+        border-radius: 16px;
+        background-color: #EDEDED;
+        color: $contact-gray;
+        gap: 8px;
+        padding: 8px 8px 8px 30px;
+      }
+
+      ul {
+        list-style-type: none;
+
+        li {
+          margin: 8px 0;
+        }
+
+        p {
+          color: $contact-gray;
+        }
+      }
+    }
+  }
+
+  .tab4-submit-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    @include phone{
+      width:100%;
+    }
+
+    .tab4-submit-btn1 {
+      @include submit-btn;
+      @include phone{
+        width:100%;
+      }
+    }
+
+    .tab4-submit-btn2 {
+      @include submit-btn;
+      background-color: $light-red;
+      color: $dark-red;
+      @include phone{
+        width:100%;
+      }
+    }
+
+    .tab4-submit-btn3 {
+      @include submit-btn;
+      background-color: white;
+      color: $dark-red;
+      @include phone{
+        width:100%;
+      }
+    }
+  }
+}
+

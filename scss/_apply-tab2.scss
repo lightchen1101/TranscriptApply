@@ -1,0 +1,139 @@
+@import "common";
+@import "variables";
+
+.tab2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 72px;
+  /*@include phone {
+    width:90%;
+  }*/
+
+  .tab2-info {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    border-radius: 32px;
+    width: -webkit-fill-available;
+    border: 2px solid $border-gray;
+    gap: 24px;
+    @include phone {
+      padding: 24px 10px;
+    }
+
+
+
+
+
+
+
+    .tab2-info-title {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      //text-align: center;
+      align-items: center;
+
+      .tab2-info-title-name {
+        font-size: 18px;
+        color: black;
+      }
+
+      .tab2-info-title-birth {
+        font-size: 14px;
+        color: #AAAAAA;
+      }
+    }
+
+    .tab2-info-degree {
+      text-align: left;
+      padding-right: 20px;
+      padding-left: 20px;
+
+      .tab2-info-degree-title {
+        font-size: 16px;
+      }
+      hr{
+        border: 1px solid $border-gray;
+      }
+      ul {
+        list-style-type: none;
+
+        li {
+          margin: 12px 0;
+        }
+
+        p {
+          color: $info-yellow;
+        }
+      }
+    }
+  }
+
+  .tab2-notice {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    border-radius: 32px;
+    border: 2px solid $border-gray;
+    gap: 24px;
+    align-items: center;
+    @include phone {
+      padding: 24px 10px;
+    }
+
+    .tab2-notice-title {
+      font-size: 25px;
+    }
+
+    .tab2-notice-content {
+      text-align: left;
+      font-size: 14px;
+      color: #333333;
+      padding: 0 40px;
+
+      p {
+        color: #FF3B30;
+      }
+
+      a {
+        color: $dark-red;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 15px;
+      }
+
+      ol {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  .tab2-document-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width:100%;
+    align-items: center;
+
+    .tab2-document-btn-e {
+      @include submit-btn;
+      @include phone{
+        width:100%;
+      }
+    }
+
+    .tab2-document-btn-paper {
+      @include submit-btn;
+      background-color: #EEDFE1;
+      color: $dark-red;
+      @include phone{
+        width:100%;
+      }
+    }
+  }
+}

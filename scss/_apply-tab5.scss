@@ -1,0 +1,221 @@
+@import "common";
+@import "variables";
+$light-red: #EEDFE1;
+
+.tab5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 72px;
+  text-align: center;
+
+  .tab5-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 24px 32px;
+    border-radius: 32px;
+    border: 2px solid $border-gray;
+    gap: 24px;
+    @include phone{
+      padding:24px 10px;
+    }
+
+    .tab5-container-title-box {
+      gap: 4px;
+
+      .tab5-container-title {
+        font-size: 25px;
+      }
+
+      .tab5-container-title-date {
+        font-size: 14px;
+        color: #AAAAAA;
+      }
+    }
+
+    .tab5-container-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      @include phone {
+        gap: 8px;
+      }
+
+      .tab5-container-detail-payment {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        gap: 24px;
+
+        div {
+          display: inline-block;
+
+          .tab5-container-detail-payment-date {
+            color: #FF3B30;
+            padding-left: 5px;
+          }
+        }
+      }
+
+      .tab5-container-detail-notice {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        gap: 24px;
+
+        div {
+          display: inline-block;
+
+          .tab5-container-detail-notice-date {
+            color: #FF3B30;
+            padding-left: 5px;
+          }
+        }
+      }
+
+      .tab5-container-detail-number {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        justify-content: space-between;
+        font-size: 14px;
+
+        span {
+          color: $dark-red;
+        }
+
+        a {
+          color: $dark-red;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .apply-detail-popout{
+          cursor: pointer;
+        }
+      }
+
+      .tab5-container-detail-popout {
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+        background-color: #EDEDED;
+        border-radius: 16px;
+        padding: 12px 32px 12px 32px;
+
+        .tab5-container-detail-item {
+          display: flex;
+          flex-direction: row;
+          text-align: left;
+          gap: 24px;
+
+          ul {
+            list-style-type: none;
+            gap: 4px;
+            color: $contact-gray;
+          }
+
+          ol {
+            gap: 4px;
+            padding-bottom:4px;
+            list-style-position: inside;
+            color: $contact-gray;
+          }
+
+          .tab5-container-detail-letter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .tab5-container-detail-letter {
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+            }
+          }
+
+          .tab5-container-detail-data {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            li {
+              color: #333333;
+
+              p {
+                color: $contact-gray;
+              }
+            }
+          }
+
+
+        }
+        .tab5-container-detail-btn-container{
+          display: flex;
+          justify-content: center;
+          .tab5-container-detail-exit-btn {
+            display: flex;
+            cursor: pointer;
+            border-radius: 40px;
+            width:82px;
+            height: 28px;
+            justify-content: center;
+            align-items: center;
+            background-color: $contact-gray;
+            color: $white;
+          }
+        }
+
+      }
+    }
+
+    .tab5-notice-content {
+      text-align: left;
+      font-size: 14px;
+      color: #333333;
+      padding: 0 40px;
+
+      span {
+        color: #FF3B30;
+      }
+    }
+
+
+  }
+
+  .tab5-submit-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    @include phone{
+      width:100%;
+    }
+
+    .tab5-submit-btn1 {
+      @include submit-btn;
+      @include phone{
+        width:100%;
+      }
+    }
+
+    .tab5-submit-btn2 {
+      @include submit-btn;
+      background-color: $light-red;
+      color: $dark-red;
+      @include phone{
+        width:100%;
+      }
+    }
+
+    .tab5-submit-btn3 {
+      @include submit-btn;
+      background-color: white;
+      color: $dark-red;
+      @include phone{
+        width:100%;
+      }
+    }
+  }
+}
+

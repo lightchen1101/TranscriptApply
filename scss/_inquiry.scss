@@ -1,0 +1,559 @@
+@import "variables";
+@import "common";
+
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  .header-left-logo {
+    width: 48px;
+  }
+
+  .header-left-word {
+    .header-left-word-ntu {
+      font-size: 24px;
+    }
+
+    .header-left-word-ntu-trans {
+      font-size: 12px;
+      color: $dark-red;
+    }
+
+  }
+}
+
+.header-right {
+  gap: 24px;
+
+  .header-localeEng {
+    display: block;
+    cursor: pointer;
+  }
+
+  .header-localeZh {
+    display: none;
+    cursor: pointer;
+  }
+
+  .header-logout {
+    display: none;
+    cursor: pointer;
+  }
+
+}
+
+.main-inquiry {
+  padding: 140px 100px 120px;
+  gap: 72px;
+  align-items: center;
+  @include phone {
+    padding: 140px 16px 120px;
+
+
+  }
+
+  .tab1 {
+    @include phone {
+      width: 90%;
+    }
+
+  }
+
+  .main-fix {
+    gap: 32px;
+    width: 100%;
+
+    .main-tab-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      .tab {
+        background-color: $white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: 0.8px solid $border-gray;
+        color: $dark-red;
+        width: 140px;
+        text-align: center;
+      }
+
+      .active-tab {
+        background-color: $dark-red;
+        color: $white;
+      }
+    }
+
+    .main-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+
+      .main-title-text {
+        color: $dark-red;
+        font-size: 24px;
+        top: 50%;
+        left: 50%;
+
+      }
+      .main-title-sub{
+        display: none;
+        font-size: 14px;
+        color: #333333;
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+    width: 50%;
+
+  }
+}
+
+.inquiry-tab2 {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 72px;
+  text-align: center;
+  width: 100%;
+
+  .tab2-info {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    border-radius: 32px;
+    width: 100%;
+    border: 2px solid $border-gray;
+    gap: 24px;
+
+    .tab2-info-title {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      //text-align: center;
+
+      .tab2-info-title-name {
+        font-size: 18px;
+        color: black;
+      }
+
+      .tab2-info-title-birth {
+        font-size: 14px;
+        color: #AAAAAA;;
+      }
+    }
+
+    .tab2-info-degree {
+      text-align: left;
+
+      .tab2-info-degree-title {
+        font-size: 16px;
+      }
+
+      hr {
+        border: 1px solid $border-gray;
+      }
+
+      ul {
+        list-style-type: none;
+
+        li {
+          margin: 12px 0;
+        }
+
+        p {
+          color: $info-yellow;
+        }
+      }
+    }
+  }
+
+  .tab2-notice {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 24px 32px;
+    border-radius: 32px;
+    border: 2px solid $border-gray;
+    gap: 24px;
+
+    .tab2-notice-title {
+      font-size: 25px;
+    }
+
+    .tab2-notice-content {
+      text-align: left;
+      font-size: 14px;
+      color: #333333;
+      padding: 0 40px;
+
+      p {
+        color: #FF3B30;
+      }
+
+      a {
+        color: $dark-red;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 15px;
+      }
+
+      ol {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  .tab2-document-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .tab2-document-btn-e {
+      @include submit-btn;
+    }
+
+    .tab2-document-btn-paper {
+      @include submit-btn;
+      background-color: #EEDFE1;
+      color: $dark-red;
+    }
+  }
+}
+
+
+.inquiry-tab2 {
+  display: none;
+  flex-direction: column;
+  gap: 72px;
+  width: 100%;
+
+  .tab2-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    border-radius: 32px;
+    border: 2px solid $border-gray;
+    gap: 24px;
+    width: 55%;
+    text-align: left;
+    @include phone {
+      margin:8px;
+      padding: 24px 16px;
+      width:90%;
+    }
+
+    .tab2-container-title {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .tab2-container-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .tab2-payment-progress {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .tab2-payment-progress-left {
+          display: flex;
+          flex-direction: column;
+
+          .tab2-payment-progress-number {
+            color: $dark-red;
+          }
+
+          .tab2-payment-progress-detail {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+            color: #333333;
+          }
+        }
+
+        .tab2-payment-progress-right {
+          display: flex;
+          flex-direction: row;
+          gap: 24px;
+
+          .tab2-payment-online {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $dark-red;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            @include btn-round-border;
+          }
+
+          .tab2-payment-print {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $dark-red;
+            padding: 12px 8px;
+            @include btn-round-border;
+            @include phone {
+              display: none;
+            }
+          }
+
+          .tab2-payment-sent {
+            color: #666666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            cursor: default;
+          }
+
+          .tab2-payment-ship {
+            color: #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            @include btn-round-border;
+            cursor: default;
+            border: 1px solid #333333;
+          }
+        }
+      }
+
+      /*.tab2-container-detail{
+        display:none;
+      }*/
+      .open-cont {
+        display: block !important;
+      }
+
+      .tab2-container-detail {
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+
+        .tab2-container-detail-payment {
+          display: flex;
+          flex-direction: row;
+          font-size: 14px;
+          gap: 24px;
+
+          div {
+            display: inline-block;
+
+            .tab2-container-detail-payment-date {
+              color: #FF3B30;
+              padding-left: 5px;
+            }
+          }
+        }
+
+        .tab2-container-detail-notice {
+          display: flex;
+          flex-direction: row;
+          font-size: 14px;
+          gap: 24px;
+
+          div {
+            display: inline-block;
+
+            .tab2-container-detail-notice-date {
+              color: #FF3B30;
+              padding-left: 5px;
+            }
+          }
+        }
+
+        .tab2-container-detail-number {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          font-size: 14px;
+
+          span {
+            color: $dark-red;
+            cursor: pointer;
+          }
+
+          a {
+            color: $dark-red;
+            text-decoration: none;
+            cursor: pointer;
+          }
+
+          .apply-detail-popout {
+            cursor: pointer;
+          }
+        }
+
+        .tab2-container-detail-popout {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          background-color: #EDEDED;
+          border-radius: 16px;
+          padding: 12px 32px 12px 32px;
+          @include phone {
+            padding: 8px;
+            gap:8px;
+          }
+
+          .tab2-payment-print-phone {
+            display: none;
+            @include phone {
+              display: flex;
+              color: $dark-red;
+              justify-content: flex-end;
+
+              span {
+                display: inline-block;
+                transform: rotate(90deg);
+              }
+            }
+            @include tablet {
+              display: flex;
+              color: $dark-red;
+              justify-content: flex-end;
+
+              span {
+                display: inline-block;
+                transform: rotate(90deg);
+              }
+            }
+
+          }
+
+          .tab2-container-detail-item {
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+            gap: 24px;
+            @include phone {
+              gap: 8px;
+            }
+            div{
+            }
+            ul {
+              list-style-type: none;
+              gap: 4px;
+              color: $contact-gray;
+              padding: 0;
+            }
+
+            ol {
+              gap: 4px;
+              list-style-position: inside;
+              color: $contact-gray;
+              padding: 0;
+            }
+
+            .tab2-container-detail-letter-container {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+
+              .tab2-container-detail-letter {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+              }
+            }
+
+            .tab2-container-detail-data {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+
+              li {
+                color: #333333;
+                margin: 0;
+
+                p {
+                  color: $contact-gray;
+                }
+              }
+            }
+
+
+          }
+
+          .tab2-container-detail-btn-container {
+            display: flex;
+            justify-content: center;
+
+            .tab2-container-detail-exit-btn {
+              display: flex;
+              cursor: pointer;
+              border-radius: 40px;
+              width: 82px;
+              height: 28px;
+              justify-content: center;
+              align-items: center;
+              background-color: $contact-gray;
+              color: $white;
+            }
+          }
+
+        }
+      }
+
+      .tab2-letter-container {
+        border-radius: 16px;
+        background-color: #EDEDED;
+        color: $contact-gray;
+      }
+
+      ol {
+        display: flex;
+        padding: 8px 8px 8px 30px;
+        flex-direction: column;
+        gap: 8px;
+        align-self: stretch;
+      }
+
+      ul {
+        list-style-type: none;
+
+        li {
+          margin: 8px 0;
+        }
+
+        p {
+          color: $contact-gray;
+        }
+      }
+    }
+  }
+
+  .tab2-submit-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+
+    .tab2-submit-btn1 {
+      @include submit-btn;
+      background-color: $dark-red;
+      color: $white;
+      border: none;
+      @include phone {
+        width: 300px;
+      }
+    }
+  }
+}
+
+

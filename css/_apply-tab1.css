@@ -1,0 +1,295 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 144px 24px 144px;
+  gap: 40px;
+  background-color: #F8F8F8;
+}
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    padding: 16px 20px 24px 20px;
+    gap: 32px;
+  }
+}
+@media (max-width: 1080px) and (min-width: 768px) {
+  footer {
+    flex-direction: column;
+    padding: 16px 70px 24px 70px;
+  }
+}
+footer .footer-title {
+  gap: 8px;
+  font-size: 20px;
+  color: #4B4B4B;
+}
+footer .footer-contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+footer .footer-contact-container .footer-contact-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 72px;
+}
+@media (max-width: 768px) {
+  footer .footer-contact-container .footer-contact-cards {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+footer .footer-contact-container .footer-contact-cards .footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+footer .footer-contact-container .footer-contact-cards .footer-contact a {
+  text-decoration: none;
+}
+footer .footer-contact-container .footer-contact-cards .footer-contact .footer-contact-group {
+  color: #933243;
+}
+footer .footer-contact-container .footer-contact-cards .footer-contact .footer-contact-info p {
+  color: black;
+}
+footer .footer-contact-container .footer-contact-cards .footer-contact .footer-contact-info a {
+  color: #933243;
+}
+footer .footer-contact-container .footer-help {
+  display: flex;
+  flex-direction: column;
+}
+footer .footer-contact-container .footer-help .footer-info {
+  display: inline-flex;
+  cursor: pointer;
+}
+footer .footer-contact-container .footer-help .footer-info div {
+  color: #933243;
+}
+footer .footer-contact-container .footer-help .footer-info-popout {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  width: 50%;
+  border-radius: 16px;
+  gap: 32px;
+  z-index: 2;
+}
+@media (max-width: 768px) {
+  footer .footer-contact-container .footer-help .footer-info-popout {
+    width: 80%;
+  }
+}
+footer .footer-contact-container .footer-help .footer-info-popout .footer-info-popout-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #2D2D2D;
+  Padding: 16px 54px;
+}
+footer .footer-contact-container .footer-help .footer-info-popout .footer-info-popout-title .footer-info-exit-btn {
+  cursor: pointer;
+}
+footer .footer-contact-container .footer-help .footer-info-popout .footer-info-popout-content {
+  font-size: 16px;
+  color: #6F6F6F;
+  background-color: #F8F8F8;
+  padding: 40px 56px;
+  overflow: hidden;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+footer .footer-copyright {
+  display: flex;
+  justify-content: center;
+  color: #4B4B4B;
+}
+@media (max-width: 768px) {
+  footer .footer-copyright {
+    text-align: center;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.tab1 form, .tab1 form .tab1-input, .tab1 form .tab1-input .tab1-input-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tab1 form .tab1-input-text {
+  width: 100%;
+  border: 2px solid #DDE1EB;
+  border-radius: 16px;
+  height: 56px;
+}
+.tab1 form .tab1-input-text #name {
+  display: none;
+}
+.tab1 form .tab1-input-text #uid {
+  display: block;
+}
+.tab1 form div, .tab1 form .tab1-input div, .tab1 form .tab1-input .tab1-input-btn div {
+  font-size: 16px;
+}
+.tab1 form p, .tab1 form .tab1-input p, .tab1 form .tab1-input .tab1-input-btn p {
+  font-size: 14px;
+  color: #999999;
+  text-align: center;
+}
+.tab1 form .service-description-btn {
+  color: #933243;
+}
+.tab1 form .service-description-btn:hover {
+  cursor: pointer;
+}
+.tab1 form .tab1-input, .tab1 form .tab1-input .tab1-input-btn {
+  gap: 8px;
+}
+.tab1 form .tab1-input i, .tab1 form .tab1-input .tab1-input-btn i {
+  margin-left: -30px;
+  cursor: pointer;
+}
+.tab1 form .tab1-input .tab1-input-btn {
+  flex-direction: row;
+  gap: 8px;
+}
+.tab1 form .tab1-input #uid {
+  display: block;
+}
+.tab1 form .tab1-input label[for=name] { /*light update 24/01/09 要隱藏lable 原因寫在js註解*/
+  display: none;
+}
+.tab1 form input[type=radio] {
+  accent-color: #933243;
+}
+.tab1 form input[type=checkbox] {
+  accent-color: #933243;
+}
+.tab1 form .tab1-input-submit-btn {
+  display: flex;
+  justify-content: center;
+}
+.tab1 form .tab1-input-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #933243;
+  color: #FFFFFF;
+  width: 400px;
+  height: 58px;
+  border-radius: 16px;
+  cursor: pointer;
+  background-color: #DCDCDC;
+  border: none;
+}
+.tab1 form .tab1-input-submit:hover { /*if (info-check == 1)*/
+  background-color: #933243;
+  color: #FFFFFF;
+  border: none;
+}
+.tab1 form input:valid {
+  border: 2px solid #DDE1EB;
+}
+.tab1 form input:invalid {
+  border: 2px solid red;
+}
+.tab1 form .popout-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.tab1 form .popout-service-description {
+  width: 60%;
+  height: 70%;
+  display: none;
+  background-color: #F2F2F2;
+  border: 0.8px solid #6F6F6F;
+  border-radius: 10px;
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+}
+@media (max-width: 768px) {
+  .tab1 form .popout-service-description {
+    top: 55%;
+    width: 90%;
+    height: 65%;
+  }
+}
+.tab1 form .popout-service-description .popout-service-container {
+  display: flex;
+  flex-direction: column;
+  /*position: relative; light update0329*/
+}
+.tab1 form .popout-service-description .popout-service-container .popout-navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px 80px;
+  position: sticky; /*light update0329*/
+  top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+@media (max-width: 768px) {
+  .tab1 form .popout-service-description .popout-service-container .popout-navbar {
+    padding-left: 40px;
+  }
+}
+.tab1 form .popout-service-description .popout-service-container .popout-navbar .navbar-text {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 16px;
+  color: #4B4B4B;
+  justify-content: space-between;
+}
+.tab1 form .popout-service-description .popout-service-container .popout-navbar .exit-btn {
+  border: none;
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+.tab1 form .popout-service-description .popout-service-container .popout-service-description-content {
+  padding: 30px 10%;
+  font-size: 14px;
+  color: #000000;
+  overflow-y: auto;
+}
+.tab1 form .popout-service-description .popout-service-container .popout-service-description-content div {
+  font-size: 14px;
+  color: #FF3B30;
+  display: inline;
+}
+.tab1 form .popout-service-description .popout-service-container .popout-service-description-content ul {
+  padding-left: 15px;
+}
+.tab1 form .popout-service-description .popout-service-container .popout-service-description-content ul li {
+  padding-left: 15px;
+}
+
+/*# sourceMappingURL=_apply-tab1.css.map */

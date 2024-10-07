@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="js/libs/jquery-3.7.1.min.js"></script>
+    <script src="js/libs/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.messagestore.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.language.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.parser.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.emitter.js"></script>
+    <script src="js/libs/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />-->
+    <title data-i18n="head-title">開始申請</title>
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <img src="img/ntu-logo.png" class="header-left-logo" alt="logo">
+        <div class="header-left-word">
+            <div class="header-left-word-ntu" data-i18n="header-ntu">國立臺灣大學</div>
+            <nobr class="header-left-word-ntu-trans" data-i18n="head-title">成績單及學位證明書線上申請系統</nobr>
+        </div>
+    </div>
+    <div class="header-right">
+        <a class="header-localeEng">English</a>
+        <a class="header-localeZh">Zh-TW</a>
+        <a class="header-logout" data-i18n="header-logout">登出</a>
+    </div>
+</header>
+<main class="main-apply">
+    <div class="main-fix">
+        <div class="main-title">
+            <div class="main-return-btn" onclick="openTabPrev()">&#10132</div>
+            <nobr class="main-title-text" data-i18n="main-apply-title">成績單及學位證明書申請</nobr>
+        </div>
+        <div class="main-tab-bar">
+            <div class="tab" data-i18n="main-apply-tab-1" id="bar-tab1">登入</div>
+            <div class="tab" data-i18n="main-apply-tab-2" id="bar-tab2">確認學籍資料</div>
+            <div class="tab" data-i18n="main-apply-tab-3-paper" id="bar-tab3">填寫申請文件</div>
+            <div class="tab" data-i18n="main-apply-tab-4-paper" id="bar-tab4">確認申請內容</div>
+            <div class="tab" data-i18n="main-apply-tab-5" id="bar-tab5">線上繳費</div>
+        </div>
+    </div>
+    <div id="tab1" class="tab-content">
+        <div class="tab1">
+            <form>
+                <div class="tab1-input">
+                    <div data-i18n="id">身分證字號</div>
+                    <label for="id"><input class="tab1-input-text" type="password" id="id"
+                                           placeholder="例：A1234567890">
+                        <i class="far fa-eye" id="togglePassword"></i>
+                    </label>
+                    <p data-i18n="id-note">交換生與訪問生請填學號，僑生與外籍生請填外僑居留證號碼，陸生請填統一證號 10 碼。</p>
+                </div>
+                <div class="tab1-input">
+                    <div data-i18n="birth">西元出生年月日</div>
+                    <input class="tab1-input-text" type="text" placeholder="例：20020202" maxlength="8">
+                </div>
+                <div class="tab1-input">
+                    <div class="tab1-input-btn">
+                        <label><input class="tab1-input-btn-uid" data-i18n="uid" type="radio" name="sex" value="uid" checked
+                                      onclick="switchToUid()" maxlength="9"/></label>學號
+                        <label><input class="tab1-input-btn-name" data-i18n="zh-name" type="radio" name="sex" value="name"
+                                      onclick="switchToName()"></label>中文姓名
+                    </div>
+                    <label for="uid"><input class="tab1-input-text" type="text" name="id" id="uid"
+                                            placeholder="例：B10203040"></label>
+                    <label for="name"><input class="tab1-input-text" type="text" name="id" id="name"
+                                             placeholder="例：王大明"></label>
+                </div>
+                <label for="scales"><input type="checkbox" id="scales" data-i18n="inquiry-agree">我已詳閱並同意
+                    <span class="service-description-btn" data-i18n="inquiry-agree-note"><!--light update *Sherry 你自己已經解了啊 就是這樣-->
+                        服務說明暨約定事項
+                    </span></label>
+                <!--<div class="service-description-btn">服務說明暨約定事項</div>-->
+
+
+                <div class="popout-overlay"></div>
+                <div class="popout-service-description">
+                    <div class="popout-service-container">
+                        <div class="popout-navbar">
+                            <div class="popout-service-description-title" data-i18n="inquiry-agree-note">服務說明暨約定事項</div>
+                            <div class="exit-btn">&#10005</div>
+                        </div>
+                        <div class="popout-service-description-content" data-i18n="inquiry-agree-note-content">
+                            歡迎使用本校網路申請在校成績單及中英文學位證明書，於使用本系統時有關作業說明如下：<br><br>
+                            一、個人資料：<br>
+                            為保護申請人資料在網路之安全性，本系統將在 SSL 128bit 環境下加密。<br>
+                            本系統設定
+                            <div> 15 分鐘</div>
+                            ，即自動啟動離線功能，以保護申請人於網路中之資料安全。<br>
+                            為使您能完成申請作業，請必須核對所輸入之資料是否正確，若仍無法完成申請手續時，請與下列相關單位聯絡。<br>
+                            對於您所輸入之資料，本校將負保密責任，惟
+                            <div>未經當事人授權或同意而代為申請各類文件者，如經告發，申請人須負相關法律刑責！</div>
+                            <br><br><br>
+                            二、網路申請作業說明：<br><br>
+                            <ul>
+                                <li>可申請之項目
+                                    <ol type="a">
+                                        <li>中文歷年成績單</li>
+                                        <li>英文歷年成績單</li>
+                                        <li>中文學位證明書（限已畢業者）</li>
+                                        <li>英文學位證明書（限已畢業者）</li>
+                                    </ol>
+                                </li>
+                                <br>
+                                <li>申請方式：每一筆申請作業以郵寄單一地址為限，若須郵寄另一地址時，請重新申請另一筆。</li>
+                                <li>付款方式：於網路完成申請程序，請直接以信用卡繳費，或自行下載並列印繳費單，於期限內以 ATM
+                                    轉帳或至指定金融機構臨櫃繳費。
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--                <div class="tab1-input-submit-btn"><input class="tab1-input-submit" type="submit" value="下一步"></div>-->
+                <div class="tab1-input-submit-btn">
+                    <div class="tab1-input-submit" data-i18n="apply-btn-next" onclick="openTab('tab2')">下一步</div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!--=========================*
+                登入 end
+    *===========================-->
+
+    <div id="tab2" class="tab-content">
+        <div class="tab2" data-i18n="apply-tab2-subtitle">
+            <div>您在「國立臺灣大學」的學籍資料如下，請確認您的中文姓名、學制、學籍狀態是否皆正確。<br>
+                若有誤請於 8:00AM ~ 5:00PM 電洽教務處各系所承辦同仁申請修改您的資料。
+            </div>
+            <div class="tab2-info">
+                <div class="tab2-info-title">
+                    <div class="tab2-info-title-name">陳孜君</div>
+                    <div class="tab2-info-title-birth" data-i18n="birth">西元出生年月日<span>：1990-01-26</span></div>
+                </div>
+                <div class="tab2-info-degree">
+                    <b class="tab2-info-degree-title" data-i18n="bachelor">學士班</b>
+                    <hr>
+                    <ul>
+                        <li data-i18n="apply-tab2-leave-name">離校時的中文姓名<p>陳孜君</p></li>
+                        <li data-i18n="apply-tab2-status">學籍狀態<p>畢業</p></li>
+                        <li data-i18n="uid">學號<p>B000000</p></li>
+                        <li data-i18n="apply-tab2-department">系所名稱<p>資訊工程學系</p></li>
+                    </ul>
+                </div>
+                <div class="tab2-info-degree">
+                    <b class="tab2-info-degree-title" data-i18n="master">碩士班</b>
+                    <hr>
+                    <ul>
+                        <li data-i18n="apply-tab2-leave-name">離校時的中文姓名<p>陳孜君</p></li>
+                        <li data-i18n="apply-tab2-status">學籍狀態<p>畢業</p></li>
+                        <li data-i18n="uid">學號<p>B000000</p></li>
+                        <li data-i18n="apply-tab2-department">系所名稱<p>資訊工程學系</p></li>
+                    </ul>
+                </div>
+                <div class="tab2-info-degree">
+                    <b class="tab2-info-degree-title" data-i18n="doctor">博士班</b>
+                    <hr>
+                    <ul>
+                        <li data-i18n="apply-tab2-leave-name">離校時的中文姓名<p>陳孜君</p></li>
+                        <li data-i18n="apply-tab2-status">學籍狀態<p>畢業</p></li>
+                        <li data-i18n="uid">學號<p>B000000</p></li>
+                        <li data-i18n="apply-tab2-department">系所名稱<p>資訊工程學系</p></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="tab2-notice">
+                <div class="tab2-notice-title" data-i18n="apply-tab2-notice">注意事項</div>
+                <ol class="tab2-notice-content" data-i18n="apply-tab2-notice-content">
+                    <li>
+                        在校生(含成績未到齊之學生)及尚未領取畢業證書之應屆畢業生，因成績資料尚會改變，建議申請紙本成績單
+                    </li>
+                    <li>
+                        若希望親自領取或自行寄送紙本成績單，請改至教務處旁之自動化成績單申請機台辦理，此線上申請恕不提供自行領取成績單之選項。
+                    </li>
+                    <li>畢業之校友建議申請電子成績單</li>
+                    <li>
+                        電子成績單會於申請完成並成功入帳後的三個工作天內製發，如因成績不全難以適用，將由申請人自行負責，本處不再重新製作，不便之處，敬請見諒。
+                    </li>
+                    <li>郵局通知：
+                        <ul>
+                            <li>現今飛往美國航班減少，郵件寄送到逹時間無法確定，若為急件，建議自行到各教務單位申請文件後以其他方寄送(如
+                                DHL、FedEx 等)，不便之處敬請見諒。
+                            </li>
+                            <li>受 COVID-19 影響，目前為止可收寄出口航空郵件之國家/地區為 84
+                                個；且郵遞時效皆有所延誤。
+                            </li>
+                            <li>其他資訊詳見，<a target="_blank"
+                                                href="https://www.post.gov.tw/post/internet/Group/index.jsp?ID=150101&news_no=43840&control_type=page&news_cat=4&group_name=post">中華郵政全球資訊網</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ol>
+            </div>
+            <div class="tab2-document-btn">
+                <a class="tab2-document-btn-e" data-i18n="apply-btn-e" onclick="openTab('tab3-e')">申請電子文件</a>
+                <a class="tab2-document-btn-paper" data-i18n="apply-btn-paper" onclick="openTab('tab3-paper')">申請紙本文件</a>
+            </div>
+        </div>
+    </div>
+    <div id="tab3-paper" class="tab-content">
+        <div class="tab3-paper">
+            <div data-i18n="apply-tab3-paper-subtitle-1">每一筆申請作業以郵寄單一地址為限，若須郵寄另一地址時，請重新申請另一筆</div>
+            <div class="tab3-container">
+                <div class="tab3-container-title" data-i18n="apply-item">申請項目</div>
+                <ul>
+                    <li data-i18n="apply-tab3-paper-subtitle-2">請至少選擇一份</li>
+                    <li data-i18n="apply-tab3-paper-subtitle-3">每筆申請最多總計 20 份，若超過請再申請另一筆</li>
+                </ul>
+                <table>
+                    <thead>
+                    <tr class="tab3-table-header">
+                        <th data-i18n="apply-item">申請項目</th>
+                        <th data-i18n="bachelor">學士班</th>
+                        <th data-i18n="master">碩士班</th>
+                        <th data-i18n="doctor">博士班</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div>中文歷年成績單</div>
+                            <p>NT$20/份</p>
+                        </td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div>英文歷年成績單</div>
+                            <p>NT$20/份</p>
+                        </td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                    </tr>
+
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div>中文學位證明書(不含畢業名次)</div>
+                            <p>NT$20/份</p>
+                        </td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div>英文學位證明書(不含畢業名次)</div>
+                            <p>NT$20/份</p></td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div>中文學位證明書(含畢業名次)</div>
+                            <p>NT$20/份</p></td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div>英文學位證明書(含畢業名次)</div>
+                            <p>NT$20/份</p></td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                        <td data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-tab3-seal">彌封服務</div>
+                            <p>NT$5/份</p>
+                        </td>
+                        <td colspan="3" data-i18n="unit"><input class="tab3-input-amount" type="text"/>份</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="tab3-table-row-fee" data-i18n="apply-tab3-item-fee">項目費用 NT$<span>95</span>
+                </div>
+                <div class="tab3-container">
+                    <div class="tab3-container-title" data-i18n="seal-content">彌封內容</div>
+                    <ul>
+                        <li data-i18n="apply-tab3-paper-subtitle-4">請選擇要放入的項目，其他未選擇放入的項目將以一般密封信函方式寄出</li>
+                    </ul>
+                    <div data-i18n="inquiry-seal-1">第一封</div>
+                    <div class="tab3-paper-container-letter-content">
+                        <label><input type="checkbox"/> 學士班｜中文歷年成績單</label>
+                        <label><input type="checkbox"/> 學士班｜英文歷年成績單</label>
+                        <label><input type="checkbox"/> 學士班｜中文學位證明書（不含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜英文學位證明書（不含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜中文學位證明書（含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜英文文學位證明書（含畢業名次）</label>
+                    </div>
+                    <div class="tab3-paper-container-letter" data-i18n="inquiry-seal-1">第二封</div>
+                    <div class="tab3-paper-container-letter-content">
+                        <label><input type="checkbox"/> 學士班｜中文歷年成績單</label>
+                        <label><input type="checkbox"/> 學士班｜英文歷年成績單</label>
+                        <label><input type="checkbox"/> 學士班｜中文學位證明書（不含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜英文學位證明書（不含畢業名次）</label>
+                        <label class="lab3-letter-unavailable"><input type="checkbox" checked onclick="return false"/>
+                            學士班｜中文學位證明書（含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜英文文學位證明書（含畢業名次）</label>
+                    </div>
+                    <div class="tab3-paper-container-letter" data-i18n="inquiry-seal-1">第三封</div>
+                    <div class="tab3-paper-container-letter-content">
+                        <label><input type="checkbox"/> 學士班｜中文歷年成績單</label>
+                        <label><input type="checkbox"/> 學士班｜英文歷年成績單</label>
+                        <label><input type="checkbox"/> 學士班｜中文學位證明書（不含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜英文學位證明書（不含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜中文學位證明書（含畢業名次）</label>
+                        <label><input type="checkbox"/> 學士班｜英文文學位證明書（含畢業名次）</label>
+                    </div>
+                </div>
+                <div class="tab3-container">
+                    <div class="tab3-container-title" data-i18n="inquiry-contact">聯絡資料</div>
+                    <form class="tab3-form">
+                        <div class="tab3-input">
+                            <div data-i18n="inquiry-contact-name">英文姓名</div>
+                            <input class="tab3-input-text" type="text" placeholder="預設出現英文姓名">
+                            <span data-i18n="apply-tab3-name-note"><span>&#9888 特別注意</span><br>
+                            此英文姓名將直接輸出在所申請的文件上，請慎重填寫，並應與 GRE 跟語言檢定、護照所用之英文姓名一致
+                        </span>
+                        </div>
+                        <div class="tab3-input">
+                            <div>Email</div>
+                            <input class="tab3-input-text" type="text" placeholder="例：abcde@gmail.com">
+                            <span data-i18n="apply-tab3-email-note">請填入一個日常聯絡的私人信箱，申請作業處理進度將透過 Email
+                            通知
+                        </span>
+                        </div>
+                        <div class="tab3-input">
+                            <div data-i18n="inquiry-contact-mobile">行動電話</div>
+                            <input class="tab3-input-text" type="text" placeholder="例：0912345678">
+                            <span data-i18n="apply-tab3-mobile-note">若包含國際區碼，請直接輸入，不要加入空白鍵或其他符號</span>
+                        </div>
+                        <div class="tab3-input">
+                            <div data-i18n="inquiry-contact-phone">聯絡電話（選填）</div>
+                            <input class="tab3-input-text" type="text"
+                                   placeholder="例：0233662388-206，請使用半型阿拉伯數字">
+                            <span data-i18n="apply-tab3-phone-note">若包含區域號碼，請直接輸入，不要加入空白鍵或其他符號；若有分機請以”-”分隔</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab3-container">
+                    <div class="tab3-container-title" data-i18n="inquiry-mail">郵寄資料</div>
+                    <ul>
+                        <li data-i18n="inquiry-mail-note-1">國內（台灣本島及台澎金馬），以普通掛號寄送</li>
+                        <li data-i18n="inquiry-mail-note-2">國外（除台灣本島及台澎金馬以外的地區），以航空掛號寄送</li>
+                        <li data-i18n="inquiry-mail-note-3">請確實點選郵寄地區，若與詳細寄送地址不符、導致郵資不正確，將無法寄送</li>
+                        <li data-i18n="inquiry-mail-note-4">郵寄費用可參考<span class="popout-postage">郵資對照表</span>，但最終整筆申請費用仍以繳費單據為準
+                        </li>
+                    </ul>
+
+                    <div class="popout-overlay"></div>
+                    <div class="popout-postage-detail">
+                        <div class="popout-navbar">
+                            <div class="popout-postage-title" data-i18n="postage-fee">郵資對照表(僅供參考)</div>
+                            <div class="popout-postage-exit-btn">&#10005</div>
+                        </div>
+                        <div class="popout-postage-content">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th class="postage-area" data-i18n="postage-fee-area">地點/份數</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                    <th>10</th>
+                                    <th>11</th>
+                                    <th>12</th>
+                                    <th>13</th>
+                                    <th>14</th>
+                                    <th>15</th>
+                                    <th>16</th>
+                                    <th>17</th>
+                                    <th>18</th>
+                                    <th>19</th>
+                                    <th>20</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="postage-area" data-i18n="postage-fee-domestic">國內普通掛號</td>
+                                    <td>28</td>
+                                    <td>28</td>
+                                    <td>36</td>
+                                    <td>36</td>
+                                    <td>36</td>
+                                    <td>44</td>
+                                    <td>44</td>
+                                    <td>44</td>
+                                    <td>44</td>
+                                    <td>44</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td class="postage-area" data-i18n="postage-fee-usa">美加普通掛號</td>
+                                    <td>93</td>
+                                    <td>106</td>
+                                    <td>119</td>
+                                    <td>132</td>
+                                    <td>145</td>
+                                    <td>158</td>
+                                    <td>171</td>
+                                    <td>184</td>
+                                    <td>197</td>
+                                    <td>210</td>
+                                    <td>223</td>
+                                    <td>236</td>
+                                    <td>249</td>
+                                    <td>262</td>
+                                    <td>275</td>
+                                    <td>288</td>
+                                    <td>301</td>
+                                    <td>314</td>
+                                    <td>327</td>
+                                    <td>340</td>
+                                </tr>
+                                <tr>
+                                    <td class="postage-area" data-i18n="postage-fee-hk">港澳普通掛號</td>
+                                    <td>74</td>
+                                    <td>74</td>
+                                    <td>80</td>
+                                    <td>86</td>
+                                    <td>92</td>
+                                    <td>92</td>
+                                    <td>98</td>
+                                    <td>98</td>
+                                    <td>104</td>
+                                    <td>110</td>
+                                    <td>116</td>
+                                    <td>116</td>
+                                    <td>122</td>
+                                    <td>122</td>
+                                    <td>128</td>
+                                    <td>134</td>
+                                    <td>134</td>
+                                    <td>140</td>
+                                    <td>140</td>
+                                    <td>146</td>
+                                </tr>
+                                <tr>
+                                    <td class="postage-area" data-i18n="postage-fee-asia">亞洲（中國）大洋洲普通掛號</td>
+                                    <td>87</td>
+                                    <td>96</td>
+                                    <td>105</td>
+                                    <td>114</td>
+                                    <td>123</td>
+                                    <td>132</td>
+                                    <td>141</td>
+                                    <td>150</td>
+                                    <td>159</td>
+                                    <td>168</td>
+                                    <td>177</td>
+                                    <td>186</td>
+                                    <td>195</td>
+                                    <td>204</td>
+                                    <td>213</td>
+                                    <td>222</td>
+                                    <td>231</td>
+                                    <td>240</td>
+                                    <td>249</td>
+                                    <td>258</td>
+                                </tr>
+                                <tr>
+                                    <td class="postage-area" data-i18n="postage-fee-eu">歐非中南美洲普通掛號</td>
+                                    <td>96</td>
+                                    <td>110</td>
+                                    <td>124</td>
+                                    <td>138</td>
+                                    <td>152</td>
+                                    <td>166</td>
+                                    <td>180</td>
+                                    <td>194</td>
+                                    <td>208</td>
+                                    <td>222</td>
+                                    <td>236</td>
+                                    <td>250</td>
+                                    <td>264</td>
+                                    <td>278</td>
+                                    <td>292</td>
+                                    <td>306</td>
+                                    <td>320</td>
+                                    <td>334</td>
+                                    <td>348</td>
+                                    <td>362</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <form class="tab3-form">
+                        <div class="tab3-input">
+                            <div data-i18n="apply-tab3-mail-area">郵寄地區</div>
+                            <label>
+                                <select>
+                                    <option disabled selected data-i18n="apply-tab3-mail-area-select">請選擇郵寄地區</option>
+                                    <option data-i18n="apply-tab3-mail-area-domestic">國內（台灣本島及台澎金馬)</option>
+                                    <option data-i18n="apply-tab3-mail-area-usa">美加地區</option>
+                                    <option data-i18n="apply-tab3-mail-area-hk">港澳地區</option>
+                                    <option data-i18n="apply-tab3-mail-area-asia">亞洲（中國）、大洋洲</option>
+                                    <option data-i18n="apply-tab3-mail-area-eu">歐洲、非洲、中南美洲</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="tab3-input">
+                            <div data-i18n="apply-tab3-postage-code">郵遞區號</div>
+                            <input class="tab3-input-text" type="text" placeholder="例：106">
+                            <span><a
+                                    href="https://www.post.gov.tw/post/internet/SearchZone/index.jsp?ID=130107"
+                                    target="_blank">查詢國內郵遞區號</a>：郵寄地區為國內，請填入前三碼郵遞區號；<a
+                                    href="https://tw.nowmsg.com/" target="_blank">查詢國際郵遞區號</a>：郵寄地區為國外，請填入郵遞區號</span>
+                        </div>
+                        <div class="tab3-input">
+                            <div data-i18n="apply-tab3-postage-address">郵寄地址</div>
+                            <input class="tab3-input-text" type="text"
+                                   placeholder="例：No. 1, Sec. 4, Roosevelt Rd., Taipei 10617, Taiwan (R.O.C.)">
+                            <span data-i18n="apply-tab3-postage-address-note">國外地址請加註國名，並請詳細確實填寫以便郵寄，地址條會以申請者所填寫內容直接列印</span>
+                        </div>
+                        <div class="tab3-input">
+                            <div data-i18n="apply-tab3-recievent">指定收件者</div>
+                            <input class="tab3-input-text" type="text"
+                                   placeholder="例：National Taiwan University Office of Academic Affairs">
+                        </div>
+                        <div class="tab3-input">
+                            <div data-i18n="apply-tab3-note">備註（選填）</div>
+                            <input class="tab3-input-text" type="text" placeholder="例：可請誰代收、是否有特殊原因急需">
+                        </div>
+                    </form>
+                    <div class="tab-paper-fee" data-i18n="apply-tab3-mail-fee">郵寄費用NT$ <span>95</span></div>
+                </div>
+                <div class="tab3-input-submit-btn">
+                    <div class="tab3-input-submit" data-i18n="apply-submit" onclick="openTab('tab4-paper')">送出</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tab3-e" class="tab-content">
+        <div class="tab3-paper">
+            <div class="tab3-container">
+                <div class="tab3-container-title" data-i18n="apply-item">申請項目</div>
+                <ul>
+                    <li>
+                        <div data-i18n="apply-tab3-e-subtitle-1">電子成績單寄送方式僅提供以校方公務電子信箱發送經電子簽章之成績單。</div>
+                        <p data-i18n="apply-tab3-e-subtitle-2">請確認收件單位可接受此一遞送方式再行申請，否則，建議以紙本彌封遞送方式申請，以保障您的權益。</p>
+                    </li>
+                    <li  data-i18n="apply-tab3-e-subtitle-3">請至少選擇一項</li>
+                </ul>
+                <table>
+                    <thead>
+                    <tr class="tab3-table-header">
+                        <th data-i18n="apply-item">申請項目</th>
+                        <th data-i18n="bachelor">學士班</th>
+                        <th data-i18n="master">碩士班</th>
+                        <th data-i18n="doctor">博士班</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-file-1">中文歷年成績電子檔</div>
+                            <p data-i18n="apply-file-fee">NT$200/份</p>
+                        </td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-file-2">英文歷年成績電子檔</div>
+                            <p data-i18n="apply-file-fee">NT$200/份</p>
+                        </td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-file-3">中文學位證明書電子檔(不含畢業名次)</div>
+                            <p data-i18n="apply-file-fee">NT$200/份</p>
+                        </td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-file-4">英文學位證明書電子檔(不含畢業名次)</div>
+                            <p data-i18n="apply-file-fee">NT$200/份</p>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-file-5">中文學位證明書電子檔(含畢業名次)</div>
+                            <p data-i18n="apply-file-fee">NT$200/份</p>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+
+                    </tr>
+                    <tr class="tab3-table-row">
+                        <td>
+                            <div data-i18n="apply-file-6">英文學位證明書電子檔(含畢業名次)</div>
+                            <p data-i18n="apply-file-fee">NT$200/份</p></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="tab3-table-row-fee" data-i18n="apply-tab3-item-fee">項目費用 NT$<span>95</span></div>
+            </div>
+            <div class="tab3-container">
+                <div class="tab3-container-title" data-i18n="apply-tab3-e-info">電子成績單寄送資料</div>
+                <ul>
+                    <li data-i18n="apply-tab3-e-subtitle-4">每筆申請可寄到 2 個 Email 信箱 ，每增加一個 Email 信箱加收 NT$20</li>
+                    <li data-i18n="apply-tab3-e-subtitle-5">每個 Email 都會收到本筆申請的所有文件，若要寄送不同的文件組合，請另筆申請。</li>
+                    <li data-i18n="apply-tab3-e-subtitle-6">寄出的每封信件主旨、說明及附件皆完全相同，無法調整</li>
+                </ul>
+                <form class="tab3-form">
+                    <div class="tab3-input">
+                        <div>Email - 1</div>
+                        <input class="tab3-input-text" type="text" placeholder="例：abcde@gmail.com">
+                    </div>
+                    <div class="tab3-input">
+                        <div data-i18n="apply-tab3-email2-option">Email - 2(選填)</div>
+                        <input class="tab3-input-text" type="text" placeholder="例：abcde@gmail.com">
+                    </div>
+                    <div class="tab3-input-addemail">
+                        <div data-i18n="apply-tab3-email3-option">Email - 3(選填)</div>
+                        <input class="tab3-input-text" type="text" placeholder="例：abcde@gmail.com">
+                    </div>
+                </form>
+                <div class="tab3-new-email">
+                    <div data-i18n="apply-tab3-new-email">新增Email信箱 <nobr>&#8853</nobr></div>
+                </div>
+                <div class="tab-paper-fee" data-i18n="apply-tab3-send-fee">寄送費用NT$ <span>95</span></div>
+
+            </div>
+            <div class="tab3-container">
+                <div class="tab3-container-title" data-i18n="inquiry-contact">聯絡資料</div>
+                <form class="tab3-form">
+                    <div class="tab3-input">
+                        <div data-i18n="inquiry-contact-name">英文姓名</div>
+                        <input class="tab3-input-text" type="text" placeholder="預設出現英文姓名">
+                        <span data-i18n="apply-tab3-name-note"><span data-i18n="apply-tab3-name-notice">&#9888 特別注意</span><br>
+                            此英文姓名將直接輸出在所申請的文件上，請慎重填寫，並應與 GRE 跟語言檢定、護照所用之英文姓名一致
+                        </span>
+                    </div>
+                    <div class="tab3-input">
+                        <div>Email</div>
+                        <input class="tab3-input-text" type="text" placeholder="例：abcde@gmail.com">
+                        <span data-i18n="apply-tab3-email-note">請填入一個日常聯絡的私人信箱，申請作業處理進度將透過 Email通知</span>
+                    </div>
+                    <div class="tab3-input">
+                        <div data-i18n="inquiry-contact-mobile">行動電話</div>
+                        <input class="tab3-input-text" type="text" placeholder="例：0912345678">
+                        <span data-i18n="apply-tab3-mobile-note">若包含國際區碼，請直接輸入，不要加入空白鍵或其他符號</span>
+                    </div>
+                    <div class="tab3-input">
+                        <div data-i18n="inquiry-contact-phone">聯絡電話（選填）</div>
+                        <input class="tab3-input-text" type="text"
+                               placeholder="例：0233662388-206，請使用半型阿拉伯數字">
+                        <span data-i18n="apply-tab3-phone-note">若包含區域號碼，請直接輸入，不要加入空白鍵或其他符號；若有分機請以”-”分隔</span>
+                    </div>
+                </form>
+            </div>
+            <div class="tab3-input-submit-btn">
+                <div class="tab3-input-submit" data-i18n="apply-submit" onclick="openTab('tab4-e')">送出</div>
+            </div>
+        </div>
+    </div>
+    <div id="tab4-paper" class="tab-content">
+        <div class="tab4">
+            <div class="tab4-container">
+                <div class="tab4-container-title" data-i18n="apply-tab4-content">申請內容</div>
+                <div class="tab4-container-content">
+                    <div class="tab4-container-content-title">
+                        <p data-i18n="apply-tab4-item-unit">申請項目 共計<span>4</span> 份
+                            <button class="expand" data-target="detail1">&#x25BE</button>
+                        </p>
+                        <div class="tab4-container-fee" data-i18n="apply-tab3-item-fee">項目費用 NT$ <p>80</p></div>
+                    </div>
+                    <hr>
+                    <ol class="detail1">
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                    </ol>
+                </div>
+                <div class="tab4-container-content">
+                    <div class="tab4-container-content-title">
+                        <p data-i18n="apply-tab4-seal-unit">彌封內容 共計<span>3</span>份
+                            <button class="expand" data-target="detail2">&#x25BE</button>
+                        </p>
+                        <div class="tab4-container-fee" data-i18n="apply-tab4-seal-fee">彌封費用 NT$ <p>15</p></div>
+                    </div>
+                    <hr>
+                    <div class="detail2">
+                        <div data-i18n="inquiry-seal-1">第一封</div>
+                        <ol class="tab4-letter-container">
+                            <li>學士班｜英文歷年成績單</li>
+                            <li>學士班｜英文歷年成績單</li>
+                        </ol>
+                        <div data-i18n="inquiry-seal-2">第二封</div>
+                        <ol class="tab4-letter-container">
+                            <li>學士班｜英文歷年成績單</li>
+                            <li>學士班｜英文歷年成績單</li>
+                        </ol>
+                        <div data-i18n=inquiry-seal-3">第三封</div>
+                        <ol class="tab4-letter-container">
+                            <li>學士班｜英文歷年成績單</li>
+                            <li>學士班｜英文歷年成績單</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="tab4-container-content">
+                    <div class="tab4-container-content-title">
+                        <p data-i18n="inquiry-mail">郵寄資料
+                            <button class="expand" data-target="detail3">&#x25BE</button>
+                        </p>
+                        <div class="tab4-container-fee" data-i18n="apply-tab3-mail-fee">郵寄費用 NT$ <p>93</p></div>
+                    </div>
+                    <hr>
+                    <ul class="detail3">
+                        <li data-i18n="apply-tab3-mail-area">郵寄地區<p>國內（台灣本島及台澎金馬）</p></li>
+                        <li data-i18n="apply-tab3-postage-code">郵遞區號<p>106</p></li>
+                        <li data-i18n="apply-tab3-postage-address">郵寄地址<p>No. 1, Sec. 4, Roosevelt Rd., Taipei 10617, Taiwan (R.O.C.)</p></li>
+                        <li data-i18n="apply-tab3-recievent">指定收件者<p>National Taiwan University Office of Academic Affairs</p></li>
+                        <li data-i18n="apply-tab3-note">備註（選填）<p>Ut enim ad minim veniam, quis nostrud exercitation.</p></li>
+                    </ul>
+                </div>
+                <div class="tab4-container-fee" >本次申請費用總計NT$ <p>188</p></div>
+            </div>
+            <div class="tab4-container">
+                <div class="tab4-container-content">
+                    <b class="tab4-container-content-title" data-i18n="inquiry-contact">聯絡資料</b>
+                    <hr>
+                    <ul>
+                        <li data-i18n="inquiry-contact-name">英文姓名
+                            <p>CHEN, TZU-CHUN</p></li>
+                        <li>Email
+                            <p>abcde@gmail.com</p></li>
+                        <li data-i18n="inquiry-contact-mobile">行動電話
+                            <p>0987654321</p></li>
+                        <li data-i18n="inquiry-contact-phone">聯絡電話（選填）
+                            <p>0233662388-206</p></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="tab4-submit-btns">
+                <div class="tab4-submit-btn1" data-i18n="apply-tab4-btn-1" onclick="openTab('tab5-paper')">資料正確，送出申請</div>
+                <div class="tab4-submit-btn2" data-i18n="apply-tab4-btn-2" onclick="openTab('tab3-paper')">回上一步，修改申請內容</div>
+                <div class="tab4-submit-btn3" data-i18n="apply-tab4-btn-3">刪除此筆申請</div>
+            </div>
+        </div>
+    </div>
+    <div id="tab4-e" class="tab-content">
+        <div class="tab4">
+            <div class="tab4-container">
+                <div class="tab4-container-title" data-i18n="apply-item">申請內容</div>
+                <div class="tab4-container-content">
+                    <div class="tab4-container-content-title">
+                        <p data-i18n="apply-tab4-item-unit">申請項目 共計<span>3</span>份
+                            <button class="expand" data-target="detail1">&#x25BE</button>
+                        </p>
+                        <div class="tab4-container-fee" data-i18n="apply-tab3-item-fee">項目費用 NT$<p>80</p></div>
+                    </div>
+                    <hr>
+                    <ol class="detail1">
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                        <li><p>學士班｜英文歷年成績單</p>
+                            <p>NT$20 * 1</p></li>
+                    </ol>
+                </div>
+                <div class="tab4-container-content">
+                    <div class="tab4-container-content-title">
+                        <p data-i18n="apply-tab4-email-total">寄送信箱 共計<span>2</span>份
+                            <button class="expand" data-target="e-detail2">&#x25BE</button>
+                        </p>
+                        <div class="tab4-container-fee" data-i18n="apply-tab3-send-fee">寄送費用 NT$<p>0</p></div>
+                    </div>
+                    <hr>
+                    <ul class="e-detail2">
+                        <li>Email - 1<p>abcde@gmail.com</p></li>
+                        <li data-i18n="apply-tab3-email2-option">Email - 2 (選填)<p>abcde@gmail.com</p></li>
+                    </ul>
+                </div>
+                <div class="tab4-container-fee" data-i18n="apply-tab4-total-fee">本次申請費用總計NT$<p>188</p></div>
+            </div>
+            <div class="tab4-container">
+                <div class="tab4-container-content">
+                    <b class="tab4-container-content-title" data-i18n="inquiry-contact">聯絡資料</b>
+                    <hr>
+                    <ul>
+                        <li data-i18n="inquiry-contact-name">英文姓名
+                            <p>CHEN, TZU-CHUN</p></li>
+                        <li>Email
+                            <p>abcde@gmail.com</p></li>
+                        <li data-i18n="inquiry-contact-mobile">行動電話
+                            <p>0987654321</p></li>
+                        <li data-i18n="inquiry-contact-phone">聯絡電話（選填）
+                            <p>0233662388-206</p></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="tab4-submit-btns">
+                <div class="tab4-submit-btn1" data-i18n="apply-tab4-btn-1" onclick="openTab('tab5-e')">資料正確，送出申請</div>
+                <div class="tab4-submit-btn2" data-i18n="apply-tab4-btn-2" onclick="openTab('tab3-e')">回上一步，修改申請內容</div>
+                <div class="tab4-submit-btn3" data-i18n="apply-tab4-btn-3">刪除此筆申請</div>
+            </div>
+        </div>
+    </div>
+    <div id="tab5-e" class="tab-content">
+        <div class="tab5">
+            <div class="tab5-container">
+                <div class="tab5-container-title-box">
+                    <div class="tab5-container-title" data-i18n="apply-tab5-finish">申請完成！</div>
+                    <div class="tab5-container-title-date" data-i18n="apply-tab5-apply-date">申請日期 <nobr>2023/10/02</nobr></div>
+                </div>
+                <div class="tab5-container-detail">
+                    <div class="tab5-container-detail-payment">
+                        <div data-i18n="inquiry-payment-ddl">繳費期限
+                            <div class="tab5-container-detail-payment-date">2023/10/16</div>
+                        </div>
+                        <div data-i18n="inquiry-payment-money">應繳金額NT$ 188</div>
+                    </div>
+                    <div class="tab5-container-detail-number">
+                        <div data-i18n="apply-tab5-apply-num">申請單編號<span>20231002000858841</span>
+                            <span class="apply-detail-popout">&#x25BE</span></div>
+                        <a data-i18n="apply-tab5-inquiry">查詢申請進度</a>
+                    </div>
+                    <div class="tab5-container-detail-popout">
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="apply-item">申請項目</nobr>
+                            <ol>
+                                <li>學士班｜英文歷年成績單</li>
+                                <li>學士班｜英文學位證明書（含畢業名次）</li>
+                                <li>碩士班｜英文歷年成績單</li>
+                                <li>碩士班｜英文學位證明書（含畢業名次）</li>
+                            </ol>
+                        </div>
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="apply-tab4-email">寄送信箱</nobr>
+                            <ul class="tab5-container-detail-data">
+                                <li>Email - 1<p>graduate@ntu.edu.tw</p></li>
+                                <li  data-i18n="apply-tab3-email2-option">Email - 2(選填)<p>abcde@gmail.com</p></li>
+                            </ul>
+                        </div>
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="inquiry-contact">聯絡資料</nobr>
+                            <ul class="tab5-container-detail-data">
+                                <li data-i18n="inquiry-contact-name">英文姓名<p>CHEN, TZU-CHUN</p></li>
+                                <li>Email<p>abcde@gmail.com</p></li>
+                                <li data-i18n="inquiry-contact-mobile">行動電話<p>0987654321</p></li>
+                                <li data-i18n="inquiry-contact-phone">聯絡電話（選填）<p>0233662388-206</p></li>
+                            </ul>
+                        </div>
+                        <div class="tab5-container-detail-btn-container">
+                            <div class="tab5-container-detail-exit-btn" data-i18n="close">收起內容</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab5-container">
+                <div class="tab5-container-title" data-i18n="apply-tab2-notice">注意事項</div>
+                <ol class="tab5-notice-content">
+                    <li data-i18n="apply-tab5-notice-1">您已完成本次申請，請於申請完成 <span  data-i18n="apply-tab5-notice-2">14 天內完成繳費，若逾期未繳，本筆申請將失敗</span></li>
+                    <li data-i18n="apply-tab5-notice-3">繳費方式：請線上繳費或自行下載並列印繳費單，以 ATM 轉帳或至指定金融機構臨櫃繳費。</li>
+                    <li data-i18n="apply-tab5-notice-4">繳費至入帳期間，國內需要三個工作日，國外需要四個工作日，教務處始能收到繳款資料，才能印製寄出。
+                    </li>
+                </ol>
+            </div>
+            <div class="tab5-submit-btns">
+                <div class="tab5-submit-btn1" data-i18n="inquiry-payment-online">線上繳費</div>
+                <div class="tab5-submit-btn2" data-i18n="inquiry-payment-print">列印繳費單</div>
+                <div class="tab5-submit-btn3" data-i18n="apply-tab5-cont" onclick="openTab('tab2')">繼續申請</div>
+            </div>
+        </div>
+    </div>
+    <div id="tab5-paper" class="tab-content">
+        <div class="tab5">
+            <div class="tab5-container">
+                <div class="tab5-container-title-box">
+                    <div class="tab5-container-title" data-i18n="apply-tab5-finish">申請完成！</div>
+                    <div class="tab5-container-title-date" data-i18n="apply-tab5-apply-date">申請日期 <nobr>2023/10/02</nobr></div>
+                </div>
+                <div class="tab5-container-detail">
+                    <div class="tab5-container-detail-payment">
+                        <div data-i18n="inquiry-payment-ddl">繳費期限
+                            <div class="tab5-container-detail-payment-date">2023/10/16</div>
+                        </div>
+                        <div data-i18n="inquiry-payment-money">應繳金額NT$ 188</div>
+                    </div>
+                    <div class="tab5-container-detail-number">
+                        <div data-i18n="apply-tab5-apply-num">申請單編號<span>20231002000858841</span>
+                            <span class="apply-detail-popout">&#x25BE</span></div>
+                        <a data-i18n="apply-tab5-inquiry">查詢申請進度</a>
+                    </div>
+                    <div class="tab5-container-detail-popout">
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="apply-item">申請項目</nobr>
+                            <ol>
+                                <li>學士班｜英文歷年成績單</li>
+                                <li>學士班｜英文學位證明書（含畢業名次）</li>
+                                <li>碩士班｜英文歷年成績單</li>
+                                <li>碩士班｜英文學位證明書（含畢業名次）</li>
+                            </ol>
+                        </div>
+
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="seal-content">彌封內容</nobr>
+                            <div class="tab5-container-detail-letter-container">
+                                <div class="tab5-container-detail-letter">
+                                    <div data-i18n="inquiry-seal-1">第一封</div>
+                                    <ol>
+                                        <li>學士班｜英文歷年成績單</li>
+                                        <li>學士班｜英文學位證明書（含畢業名次）</li>
+                                    </ol>
+                                </div>
+                                <div class="tab5-container-detail-letter">
+                                    <div data-i18n="inquiry-seal-2">第二封</div>
+                                    <ol>
+                                        <li>碩士班｜英文歷年成績單</li>
+                                    </ol>
+                                </div>
+                                <div class="tab5-container-detail-letter">
+                                    <div data-i18n="inquiry-seal-3">第三封</div>
+                                    <ol>
+                                        <li>碩士班｜英文學位證明書（含畢業名次）</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="inquiry-mail">郵寄資料</nobr>
+                            <ul class="tab5-container-detail-data">
+                                <li data-i18n="apply-tab3-mail-area">郵寄地區<p>國內（台灣本島及台澎金馬）</p></li>
+                                <li data-i18n="apply-tab3-postage-code">郵遞區號<p>106</p></li>
+                                <li data-i18n="apply-tab3-postage-address">郵寄地址<p>0987654321</p></li>
+                                <li data-i18n="apply-tab3-recievent">指定收件者<p>0233662388-206</p></li>
+                                <li data-i18n="apply-tab3-note">備註（選填）<p>國內（台灣本島及台澎金馬）</p></li>
+                            </ul>
+                        </div>
+                        <div class="tab5-container-detail-item">
+                            <nobr data-i18n="inquiry-contact">聯絡資料</nobr>
+                            <ul class="tab5-container-detail-data">
+                                <li data-i18n="inquiry-contact-name">英文姓名<p>CHEN, TZU-CHUN</p></li>
+                                <li>Email<p>abcde@gmail.com</p></li>
+                                <li data-i18n="inquiry-contact-mobile">行動電話<p>0987654321</p></li>
+                                <li data-i18n="inquiry-contact-phone">聯絡電話（選填）<p>0233662388-206</p></li>
+                            </ul>
+                        </div>
+                        <div class="tab5-container-detail-btn-container">
+                            <div class="tab5-container-detail-exit-btn" data-i18n="close">收起內容</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab5-container">
+                <div class="tab5-container-title" data-i18n="apply-tab2-notice">注意事項</div>
+                <ol class="tab5-notice-content">
+                    <li data-i18n="apply-tab5-notice-1">您已完成本次申請，請於申請完成 <span  data-i18n="apply-tab5-notice-2">14 天內完成繳費，若逾期未繳，本筆申請將失敗</span></li>
+                    <li data-i18n="apply-tab5-notice-3">繳費方式：請線上繳費或自行下載並列印繳費單，以 ATM 轉帳或至指定金融機構臨櫃繳費。</li>
+                    <li data-i18n="apply-tab5-notice-4">繳費至入帳期間，國內需要三個工作日，國外需要四個工作日，教務處始能收到繳款資料，才能印製寄出。
+                    </li>
+                </ol>
+            </div>
+            <div class="tab5-submit-btns">
+                <div class="tab5-submit-btn1" data-i18n="inquiry-payment-online">線上繳費</div>
+                <div class="tab5-submit-btn2" data-i18n="inquiry-payment-print">列印繳費單</div>
+                <div class="tab5-submit-btn3" data-i18n="apply-tab5-cont" onclick="openTab('tab2')">繼續申請</div>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="popout-overlay"></div>
+<div class="popout-close-window">
+    <div class="popout-close-window-title" data-i18n="popout-confirm-title">是否確定刪除此筆申請？</div>
+    <div class="popout-close-window-content"  data-i18n="popout-confirm-content">
+        一旦確定，此筆申請所有的填寫資料將被刪除
+    </div>
+    <div class="popout-close-window-btn">
+        <a class="popout-close-window-btn-cancel" data-i18n="main-notice-cancel">取消</a>
+        <a class="popout-close-window-btn-confirm"  data-i18n="popout-confirm">確定</a>
+    </div>
+</div>
+<footer>
+    <div class="footer-title"><p data-i18n="header-ntu"> </p>
+        <p data-i18n="head-title">成績單及學位證明書線上申請系統</p></div>
+    <div class="footer-contact-container">
+        <div class="footer-contact-cards">
+            <div class="footer-contact">
+                <a class="footer-contact-group" href="https://www.aca.ntu.edu.tw/w/aca/UAAD" data-i18n="footer-register-group">註冊組</a>
+                <div class="footer-contact-info">
+                    <p>(02)33662388 轉 206、211~225</p>
+                    <p>FAX：(02)23638200</p>
+                    <a href="mailto:chiajin@ntu.edu.tw">chiajin@ntu.edu.tw</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <a class="footer-contact-group" href="https://www.aca.ntu.edu.tw/w/aca/GAAD" data-i18n="footer-teach-group">教研組</a>
+                <div class="footer-contact-info">
+                    <p>(02)33662388 轉 403~412</p>
+                    <p>FAX：(02)23634383</p>
+                    <a href="mailto:graduate@ntu.edu.tw">graduate@ntu.edu.tw</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <a class="footer-contact-group" href="https://www.aca.ntu.edu.tw/w/aca/BOAACM" data-i18n="footer-medical-branch">醫學院教務分處</a>
+                <div class="footer-contact-info">
+                    <p>(02)23123456 轉 62192、88024、88025、88027</p>
+                    <p>FAX：(02)23913963</p>
+                    <a href="mailto:macd@ntu.edu.tw">macd@ntu.edu.tw</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-help">
+            <span data-i18n="footer-help">若有任何疑問，請於台北時間 08:00AM ~ 05:00PM 來電洽詢或 E-Mail 來信。<br></span>
+            <div class="footer-info" data-i18n="footer-help-contact">我該向誰尋求協助
+                <div class="footer-info-i">&#9432</div>
+            </div>
+            <div class="popout-overlay"></div>
+            <div class="footer-info-popout">
+                <div class="footer-info-popout-title" data-i18n="footer-popout-title">我該向誰尋求協助？
+                    <div class="exit-btn">&#215</div>
+                </div>
+                <div class="footer-info-popout-content" data-i18n="footer-popout-content">
+                    校總區各系學士班(大學部)同學，請至【註冊組】<br>
+                    校總區各系(所)碩、博士班研究生，請至【研教組】<br>
+                    學士班護理一、公衛一，醫學、牙醫、藥學、醫技、物治、職治等六系一至二年級學生請洽【註冊組】；<br>
+                    其餘醫學院、公衛學院各系所學生， 請至【醫學院教務分處】<br>
+                    進修學士班同學，請至【註冊組】
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">Copyright © 2023 國立臺灣大學教務處 Office of Academic Affairs, National Taiwan
+        University
+    </div>
+</footer>
+<script src="js/apply.js"></script>
+</body>
+</html>

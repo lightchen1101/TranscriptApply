@@ -1,0 +1,127 @@
+@import "variables";
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 144px 24px 144px;
+  gap: 40px;
+  background-color: #F8F8F8;
+  @include phone {
+    flex-direction: column;
+    padding: 16px 20px 24px 20px;
+    gap: 32px;
+  }
+  @include tablet{
+    flex-direction:column;
+    padding: 16px 70px 24px 70px;
+  }
+
+  .footer-title {
+    gap: 8px;
+    font-size: 20px;
+    color: #4B4B4B;
+  }
+
+  .footer-contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .footer-contact-cards {
+      display: flex;
+      flex-direction: row;
+      gap: 72px;
+      @include phone {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        a {
+          text-decoration: none;
+        }
+
+        .footer-contact-group {
+          color: $dark-red;
+        }
+
+        .footer-contact-info {
+          p {
+            color: black;
+          }
+
+          a {
+            color: $dark-red;
+          }
+        }
+      }
+    }
+
+    .footer-help {
+      display: flex;
+      flex-direction: column;
+
+      .footer-info {
+        display: inline-flex;
+        cursor: pointer;
+
+        div {
+          color: $dark-red;
+        }
+
+      }
+      .footer-info-popout {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #FFFFFF;
+        width: 50%;
+        border-radius: 16px;
+        //padding: 24px;
+        gap: 32px;
+        z-index: 2;
+        @include phone {
+          width: 80%;
+        }
+
+        .footer-info-popout-title {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          font-size: 20px;
+          color: #2D2D2D;
+          Padding: 16px 54px;
+
+          .footer-info-exit-btn {
+            cursor: pointer;
+          }
+        }
+
+        .footer-info-popout-content {
+          font-size: 16px;
+          color: #6F6F6F;
+          background-color: #F8F8F8;
+          padding: 40px 56px;
+          overflow: hidden;
+          border-bottom-right-radius: 16px;
+          border-bottom-left-radius :16px;
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    display: flex;
+    justify-content: center;
+    color: #4B4B4B;
+    @include phone {
+      text-align: center;
+    }
+  }
+}

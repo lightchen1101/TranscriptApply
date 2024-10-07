@@ -1,0 +1,62 @@
+$dark-red: #933243;
+$light-red: #733236;
+$white: #FFFFFF;
+$border-gray: #DDE1EB;
+$border-black: #444444;
+$subtitle-gray: #888888;
+$submit-gray: #DCDCDC;
+$info-yellow: #BC9631;
+$notice-gray: #999999;
+$contact-gray: #666666;
+$table-header-gray: #2D2D2D;
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+@mixin cont-overflow-scroll-y {
+  overflow-y: auto;
+}
+@mixin cont-overflow-scroll-x {
+  overflow-x: auto;
+}
+
+@mixin phone {
+  @media (max-width: 768px) {
+    @content
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1080px) and (min-width: 768px) {
+    @content
+  }
+}
+
+@mixin btn-round-border {
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+@mixin submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $dark-red;
+  color: #FFFFFF;
+  width: 400px;
+  height: 58px;
+  @include btn-round-border;
+}
+
+
+@mixin form-input {
+  width: 100%;
+  border: 2px solid $border-gray;
+  border-radius: 16px;
+  height: 56px;
+}

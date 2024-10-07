@@ -1,0 +1,189 @@
+@import "common";
+@import "variables";
+
+.tab1 {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .tab1-input-text {
+      @include form-input;
+
+      #name {
+        display: none;
+      }
+
+      #uid {
+        display: block;
+      }
+    }
+
+    div {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #999999;
+      text-align: center;
+
+    }
+
+    .service-description-btn {
+      color: $dark-red;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .tab1-input {
+      @extend form;
+      gap: 8px;
+
+      i {
+        margin-left: -30px;
+        cursor: pointer;
+      }
+
+      .tab1-input-btn {
+        @extend .tab1-input;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      #uid {
+        display: block;
+      }
+
+      label[for=name] { /*light update 24/01/09 要隱藏lable 原因寫在js註解*/
+        display: none;
+      }
+
+    }
+
+    input[type='radio'] {
+      accent-color: $dark-red;
+    }
+
+    input[type='checkbox'] {
+      accent-color: $dark-red;
+    }
+
+    .tab1-input-submit-btn {
+      display: flex;
+      justify-content: center;
+    }
+
+    .tab1-input-submit {
+      @include submit-btn;
+      background-color: $submit-gray;
+      border: none;
+
+
+      &:hover { /*if (info-check == 1)*/
+        background-color: $dark-red;
+        color: $white;
+        border: none;
+      }
+    }
+
+    input:valid {
+      border: 2px solid $border-gray;
+    }
+
+    input:invalid {
+      border: 2px solid red;
+    }
+
+    .popout-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .popout-service-description {
+      width: 60%;
+      height: 70%;
+      display: none;
+      background-color: #F2F2F2;
+      border: 0.8px solid #6F6F6F;
+      border-radius: 10px;
+      z-index: 2;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include cont-overflow-scroll-y;
+      @include phone {
+        top: 55%;
+        width: 90%;
+        height: 65%;
+      }
+
+      .popout-service-container {
+        display: flex;
+        flex-direction: column;
+        /*position: relative; light update0329*/
+
+        .popout-navbar {
+          display: flex;
+          justify-content: space-between;
+          background-color: #FFFFFF;
+          align-items: center;
+          flex-direction: row;
+          padding: 16px 80px;
+          position:sticky;/*light update0329*/
+          top:0;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          @include phone {
+            padding-left: 40px;
+          }
+
+          .navbar-text {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            font-size: 16px;
+            color: #4B4B4B;
+            justify-content: space-between;
+          }
+
+          .exit-btn {
+            border: none;
+            background-color: #FFFFFF;
+            cursor: pointer;
+          }
+        }
+
+        .popout-service-description-content {
+          padding: 30px 10%;
+          font-size: 14px;
+          color: #000000;
+          @include cont-overflow-scroll-y;
+
+
+          div {
+            font-size: 14px;
+            color: #FF3B30;
+            display: inline;
+          }
+
+          ul {
+            padding-left: 15px;
+
+            li {
+              padding-left: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
